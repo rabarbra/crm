@@ -1,0 +1,37 @@
+{% extends 'metalware/base.html' %}
+
+{% block content %}
+	<table>
+		<tr>
+			<td>Вид крепежа</td>
+			<td>Головка</td>
+			<td>Шлиц</td>
+			<td>Резьба</td>
+			<td>Длина</td>
+			<td>Диаметр</td>
+			<td>Покрытие</td>
+			<td>DIN</td>
+			<td>ГОСТ</td>
+			<td>ISO</td>
+			<td>Артикул</td>
+		</tr>
+	{% for detail in fasteners %}
+		<tr>
+			<td>{{ detail.hum_type }}</td>
+			<td>{{ detail.hum_head }}</td>
+			<td>{{ detail.hum_drive }}</td>
+			<td>М{{ detail.thread }}</td>
+			<td>{{ detail.diametr }}</td>
+			<td>{{ detail.hum_coating }}</td>
+			<td>{{ detail.din }}</td>
+			<td>{{ detail.gost }}</td>
+			<td>{{ detail.iso }}</td>
+			<td>{{ detail.article }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	<form method = "POST">{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Save</button>
+	</form>
+{% endblock %}

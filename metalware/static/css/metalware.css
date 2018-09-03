@@ -1,0 +1,19 @@
+form {
+	background-color: grey;
+}
+
+form p {
+	display: inline-block;
+}
+
+form p label {
+	display: none;
+}
+
+.helptext {
+	display: none;
+}
+
+table {
+	border: 1px solid black;
+}

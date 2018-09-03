@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 
 class Fastener(models.Model): #таблица для крепежа
 	
@@ -68,15 +67,27 @@ class Fastener(models.Model): #таблица для крепежа
 	description = models.TextField(blank = True, help_text = "Описание крепежного изделия") #Описание крепежного изделия
 	sellers = models.TextField(blank = True, help_text = "Поставщики, продавцы и магазины") #Поставщики, продавцы и магазины (сделать потом как ManyToManyField на таблицу поставщиков)
 	
+	def hum_type(self):
+		for i in self.TYPE_CHOICES:
+			if self.type == i[0]:
+				return i[1]
+				
+	def hum_head(self):
+		for i in self.HEAD_CHOICES:
+			if self.head == i[0]:
+				return i[1]
+	def hum_drive(self):
+		for i in self.DRIVE_CHOICES:
+			if self.drive == i[0]:
+				return i[1]
+	
+	def hum_coating(self):
+		for i in self.COATING_CHOICES:
+			if self.coating == i[0]:
+				return i[1]
+	
 	def __str__(self):
-		return self.type+' DIN'+str(self.din) #доработать, чтобы выводилось полное название типа крепежа
+		return self.fastener_type() + ' DIN' + str(self.din) #доработать, чтобы выводилось полное название типа крепежа
 		
 	
-	#ниже формы
-	
-	class FastenerForm(ModelForm):
-		class Meta:
-			model = Fastener
-			fields = ['type', 'thread', 'length', 'diametr', 'head', 'drive', 'coating', 'din', 'gost', 'iso', 'article', 'descriptions']
-	
-#Добавить валидаторы
+
