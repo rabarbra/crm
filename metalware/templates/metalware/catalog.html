@@ -2,7 +2,7 @@
 
 {% block content %}
 	<table>
-		<tr>
+		<tr class = "caption">
 			<td>Вид крепежа</td>
 			<td>Головка</td>
 			<td>Шлиц</td>
@@ -18,9 +18,14 @@
 	{% for detail in fasteners %}
 		<tr>
 			<td>{{ detail.hum_type }}</td>
+			{% if detail.head %}
 			<td>{{ detail.hum_head }}</td>
+			{% else %}
+			<td style = "visibility: hidden"></td>
+			{% endif %}
 			<td>{{ detail.hum_drive }}</td>
 			<td>М{{ detail.thread }}</td>
+			<td>{{ detail.length }}</td>
 			<td>{{ detail.diametr }}</td>
 			<td>{{ detail.hum_coating }}</td>
 			<td>{{ detail.din }}</td>
@@ -30,8 +35,11 @@
 		</tr>
 	{% endfor %}
 	</table>
-	<form method = "POST">{% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit">Save</button>
+	<form method = "POST">
+	{% csrf_token %}
+	{% for field in form %}
+		<div>{{ field}}</div>
+	{% endfor %}
+	<button type="submit">Save</button>
 	</form>
 {% endblock %}

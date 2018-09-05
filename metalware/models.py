@@ -57,9 +57,9 @@ class Fastener(models.Model): #таблица для крепежа
 	drive = models.CharField(max_length = 2, choices = DRIVE_CHOICES, null = True, blank = True, help_text = "шлиц") #шлиц
 	head = models.CharField(max_length = 2, choices = HEAD_CHOICES, null = True, blank = True, help_text = "вид головки") #вид головки
 	coating = models.CharField(max_length = 2, choices = COATING_CHOICES, default = 'WC', help_text = "покрытие, материал") #покрытие
-	diametr = models.DecimalField(max_digits = 5, decimal_places = 2, null = True, blank = True, help_text = "диаметр") #диаметр
-	length = models.DecimalField(max_digits = 5, decimal_places = 2, null = True, blank = True, help_text = "длина") #длина
-	thread = models.DecimalField(max_digits = 5,  decimal_places = 2, null = True, blank = True, help_text = "резьба") #резьба
+	diametr = models.FloatField(null = True, blank = True, help_text = "диаметр") #диаметр
+	length = models.FloatField(null = True, blank = True, help_text = "длина") #длина
+	thread = models.FloatField(null = True, blank = True, help_text = "резьба") #резьба
 	din = models.PositiveSmallIntegerField(null = True, blank = True, help_text = "DIN") #DIN
 	gost = models.CharField(max_length = 10, null = True, blank = True, help_text = "ГОСТ") #ГОСТ
 	iso = models.CharField(max_length = 10, null = True, blank = True, help_text = "ISO") #ISO
