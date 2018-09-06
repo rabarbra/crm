@@ -4,6 +4,6 @@ from .models import Fastener
 class FastenerForm(ModelForm):
 	class Meta:
 		model = Fastener
-		fields = ['type', 'thread', 'length', 'diametr', 'head', 'drive', 'coating', 'din', 'gost', 'iso', 'article', 'description', 'sellers']
+		fields = ['type', 'head', 'drive', 'thread', 'length', 'diametr', 'coating', 'din', 'gost', 'iso', 'article']
 
 #Добавить валидаторы

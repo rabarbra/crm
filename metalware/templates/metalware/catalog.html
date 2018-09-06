@@ -34,12 +34,33 @@
 			<td>{{ detail.article }}</td>
 		</tr>
 	{% endfor %}
-	</table>
-	<form method = "POST">
-	{% csrf_token %}
-	{% for field in form %}
-		<div>{{ field}}</div>
+	
+	<tr>
+			<form method = "POST">
+				{% csrf_token %}
+				{% for field in add_form %}
+					<td class = "form_td">{{ field }}</td>
+				{% endfor %}
+				<td class = "form_td">
+					<button type="submit">Add</button>
+				</td>
+			</form>
+	</tr>
+		
+	{% for form in forms %}
+		<tr>
+			<form method = "POST">
+				{% csrf_token %}
+				{% for field in form %}
+					<td class = "form_td">{{ field }}</td>
+				{% endfor %}
+				<td class = "form_td">
+					<button type="submit">Save</button>
+				</td>
+			</form>
+		</tr>
 	{% endfor %}
-	<button type="submit">Save</button>
-	</form>
+	
+	</table>
+	
 {% endblock %}
