@@ -15,7 +15,7 @@
 			<td>ISO</td>
 			<td>Артикул</td>
 		</tr>
-	{% for detail in fasteners %}
+<!--	{% for detail in fasteners %}
 		<tr>
 			<td>{{ detail.hum_type }}</td>
 			{% if detail.head %}
@@ -33,9 +33,9 @@
 			<td>{{ detail.iso }}</td>
 			<td>{{ detail.article }}</td>
 		</tr>
-	{% endfor %}
+	{% endfor %} -->
 	
-	<tr>
+	<tr class = "add_tr">
 			<form method = "POST">
 				{% csrf_token %}
 				{% for field in add_form %}
@@ -55,7 +55,10 @@
 					<td class = "form_td">{{ field }}</td>
 				{% endfor %}
 				<td class = "form_td">
-					<button type="submit">Save</button>
+					<button type="submit">edit</button>
+				</td>
+				<td>
+					<a href="delete/{{ form.instance.id }}">delete</a>
 				</td>
 			</form>
 		</tr>

@@ -2,18 +2,24 @@ form p label {
 	display: none;
 }
 
+table {
+	
+}
+
 .helptext {
 	display: none;
 }
 
 td {
-	border: 1px solid black;
-	padding: 10px;
+	border: 0px solid black;
+	padding: 0;
 }
 
 .caption td {
 	background-color: #dddddd;
 	color: green;
+	border: 1px solid green;
+	padding: 10px;
 }
 
 .form_td {
@@ -21,8 +27,17 @@ td {
 	border-style: none;
 }
 
+.add_tr td select,
+.add_tr td input,
+.add_tr td button {
+	background-color: #ffddee;
+	border: 1px solid #ee88aa;
+	color: blue;
+	margin-bottom: 10px;
+}
+
 input, select {
-	padding: 10px;
+	padding: 5px 10px;
 	max-width: 120px;
 	border: 1px solid black;
 }
