@@ -4,20 +4,16 @@ from .forms import FastenerForm
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 
 def catalog(request):
-	fasteners = Fastener.objects.all()
 	add_form = FastenerForm()
-	forms = [FastenerForm(instance = i) for i in fasteners]
+	order = request.GET.get("o", "")
+	if order == '':
+		order = 'id'
+	fasteners = Fastener.objects.order_by(order)
 	if request.method == "POST":
 		detail = FastenerForm(request.POST)
-		try:
-			detail.instance.delete()
-		except:
-			pass
 		detail.save()
-		#FastenerForm(request.POST).save()
-		
-	return render(request, 'metalware/catalog.html', {'fasteners': fasteners, 'forms': forms, 'add_form': add_form})
-
+	return render(request, 'metalware/catalog.html', {'fasteners': fasteners, 'add_form': add_form})
+	
 def delete(request, id):
 	try:
 		detail = Fastener.objects.get(id=id)
@@ -26,18 +22,14 @@ def delete(request, id):
 	except Fastener.DoesNotExist:
 		return HttpResponseRedirect("/catalog")
 		
-#def edit(request, id):
-#	try:
-#		detail = Fastener.objects.get(id=id)
-#		
-#		if request.method == "POST":
-#			detail = FastenerForm(request.POST)
-#			detail.save()
-#			return HttpResponseRedirect("/catalog")
-#	except Fastener.DoesNotExist:
-#		return HttpResponseNotFound("Detail not found")
-
-#def create(request):
-#	if request.method == "POST":
-#		detail = Fastener()
-#		detail.
+def edit(request, id):
+	try:
+		edit_detail = Fastener.objects.get(id=id)
+		edit_form = FastenerForm(instance = edit_detail)
+		if request.method == "POST":
+			edited_detail = FastenerForm(request.POST, instance = edit_detail)
+			edited_detail.save()
+			return HttpResponseRedirect("/catalog")
+		return render(request, 'metalware/edit.html', {'edit_form': edit_form})
+	except Fastener.DoesNotExist:
+		return HttpResponseNotFound("Detail not found")

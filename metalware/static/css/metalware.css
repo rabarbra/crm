@@ -3,7 +3,7 @@ form p label {
 }
 
 table {
-	
+	border-collapse: collapse;
 }
 
 .helptext {
@@ -11,11 +11,11 @@ table {
 }
 
 td {
-	border: 0px solid black;
-	padding: 0;
+	border: 1px solid grey;
+	padding: 0px 10px;
 }
 
-.caption td {
+.caption th {
 	background-color: #dddddd;
 	color: green;
 	border: 1px solid green;
@@ -33,7 +33,7 @@ td {
 	background-color: #ffddee;
 	border: 1px solid #ee88aa;
 	color: blue;
-	margin-bottom: 10px;
+	margin: 10px 0px;
 }
 
 input, select {

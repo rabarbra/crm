@@ -1,0 +1,31 @@
+{% extends 'metalware/base.html' %}
+
+{% block content %}
+	<table>
+		<tr class = "caption">
+			<td>Вид крепежа</td>
+			<td>Головка</td>
+			<td>Шлиц</td>
+			<td>Резьба</td>
+			<td>Длина</td>
+			<td>Диаметр</td>
+			<td>Покрытие</td>
+			<td>DIN</td>
+			<td>ГОСТ</td>
+			<td>ISO</td>
+			<td>Артикул</td>
+		</tr>
+		
+		<tr>
+			<form method = "POST">
+				{% csrf_token %}
+				{% for field in edit_form %}
+					<td class = "form_td">{{ field }}</td>
+				{% endfor %}
+				<td class = "form_td">
+					<button type="submit">Save</button>
+				</td>
+			</form>
+		</tr>
+	</table>
+{% endblock %}

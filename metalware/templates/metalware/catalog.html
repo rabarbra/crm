@@ -1,40 +1,30 @@
 {% extends 'metalware/base.html' %}
 
 {% block content %}
+	<div class = "filters">
+		
+	</div>
 	<table>
+	<thead>
 		<tr class = "caption">
-			<td>Вид крепежа</td>
-			<td>Головка</td>
-			<td>Шлиц</td>
-			<td>Резьба</td>
-			<td>Длина</td>
-			<td>Диаметр</td>
-			<td>Покрытие</td>
-			<td>DIN</td>
-			<td>ГОСТ</td>
-			<td>ISO</td>
-			<td>Артикул</td>
+		
+			<th>
+			<a href='?o=type'>Вид крепежа</a>
+			</th>
+			
+			<th><a href='?o=head'>Головка</a></th>
+			<th><a href='?o=drive'>Шлиц</a></th>
+			<th><a href='?o=thread'>Резьба</a></th>
+			<th><a href='?o=length'>Длина</a></th>
+			<th><a href='?o=diametr'>Диаметр</a></th>
+			<th><a href='?o=coating'>Покрытие</a></th>
+			<th><a href='?o=din'>DIN</a></th>
+			<th><a href='?o=gost'>ГОСТ</a></th>
+			<th><a href='?o=iso'>ISO</a></th>
+			<th><a href='?o=article'>Артикул</a></th>
 		</tr>
-<!--	{% for detail in fasteners %}
-		<tr>
-			<td>{{ detail.hum_type }}</td>
-			{% if detail.head %}
-			<td>{{ detail.hum_head }}</td>
-			{% else %}
-			<td style = "visibility: hidden"></td>
-			{% endif %}
-			<td>{{ detail.hum_drive }}</td>
-			<td>М{{ detail.thread }}</td>
-			<td>{{ detail.length }}</td>
-			<td>{{ detail.diametr }}</td>
-			<td>{{ detail.hum_coating }}</td>
-			<td>{{ detail.din }}</td>
-			<td>{{ detail.gost }}</td>
-			<td>{{ detail.iso }}</td>
-			<td>{{ detail.article }}</td>
-		</tr>
-	{% endfor %} -->
-	
+	</thead>
+	<tbody>
 	<tr class = "add_tr">
 			<form method = "POST">
 				{% csrf_token %}
@@ -46,24 +36,29 @@
 				</td>
 			</form>
 	</tr>
-		
-	{% for form in forms %}
+	
+	{% for detail in fasteners %}
 		<tr>
-			<form method = "POST">
-				{% csrf_token %}
-				{% for field in form %}
-					<td class = "form_td">{{ field }}</td>
-				{% endfor %}
-				<td class = "form_td">
-					<button type="submit">edit</button>
-				</td>
-				<td>
-					<a href="delete/{{ form.instance.id }}">delete</a>
-				</td>
-			</form>
+			<td>{{ detail.hum_type }}</td>
+			<td>{{ detail.hum_head }}</td>
+			<td>{{ detail.hum_drive }}</td>
+			<td>М{{ detail.thread }}</td>
+			<td>{{ detail.length }}</td>
+			<td>{{ detail.diametr }}</td>
+			<td>{{ detail.hum_coating }}</td>
+			<td>{{ detail.din }}</td>
+			<td>{{ detail.gost }}</td>
+			<td>{{ detail.iso }}</td>
+			<td>{{ detail.article }}</td>
+			<td>
+				<a href="delete/{{ detail.id }}">delete</a><br>
+				<a href="edit/{{ detail.id }}">edit</a>
+			</td>
 		</tr>
 	{% endfor %}
 	
+	</tbody>
 	</table>
+	
 	
 {% endblock %}

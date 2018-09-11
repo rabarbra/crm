@@ -53,6 +53,7 @@ class Fastener(models.Model): #таблица для крепежа
 		('WC', 'Without coating'), #без покрытия
 	)
 	
+	id = models.AutoField(primary_key = True)
 	type = models.CharField(max_length = 2, choices = TYPE_CHOICES, default = 'SC', help_text = "тип крепежа") #тип крепежа
 	drive = models.CharField(max_length = 2, choices = DRIVE_CHOICES, null = True, blank = True, help_text = "шлиц") #шлиц
 	head = models.CharField(max_length = 2, choices = HEAD_CHOICES, null = True, blank = True, help_text = "вид головки") #вид головки
@@ -87,7 +88,7 @@ class Fastener(models.Model): #таблица для крепежа
 				return i[1]
 	
 	def __str__(self):
-		return self.fastener_type() + ' DIN' + str(self.din) #доработать, чтобы выводилось полное название типа крепежа
+		return self.hum_type() + ' DIN' + str(self.din) #доработать, чтобы выводилось полное название типа крепежа
 		
 	
 
